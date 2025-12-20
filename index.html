@@ -1,74 +1,26 @@
+---
+layout: default
+---
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>图文分享 · 日更</title>
+  <title>日更目录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <style>
-    body {
-      margin: 0;
-      background: #f5f6f8;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    .page {
-      max-width: 720px;
-      margin: auto;
-      background: #fff;
-      padding: 24px;
-      line-height: 1.8;
-    }
-    h1 {
-      text-align: center;
-    }
-    h2 {
-      margin-top: 32px;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    li {
-      margin: 12px 0;
-    }
-    a {
-      text-decoration: none;
-      color: #3366cc;
-    }
-    .meta {
-      color: #888;
-      font-size: 14px;
-      text-align: center;
-      margin-bottom: 32px;
-    }
-    .footer {
-      margin-top: 60px;
-      text-align: center;
-      color: #aaa;
-      font-size: 12px;
-    }
-  </style>
 </head>
-
 <body>
-  <div class="page">
-    <h1>我的图文分享</h1>
-    <div class="meta">日更记录 · 通过链接直接访问</div>
-
-    <!-- 👇 日更目录从这里开始 -->
-    <h2>日更目录</h2>
+  <div style="max-width:720px;margin:auto;padding:24px">
+    <h1>日更目录</h1>
     <ul>
-      <li>
-        <a href="posts/2025-12-20.html">
-          2025-12-20｜今天的标题
-        </a>
-      </li>
-      <!-- 以后每天就在这里往上加一行 -->
+      {% for post in site.posts %}
+        <li>
+          <a href="{{ post.url }}">
+            {{ post.date | date: "%Y-%m-%d" }}｜{{ post.title }}
+          </a>
+        </li>
+      {% endfor %}
     </ul>
-    <!-- 👆 日更目录到这里结束 -->
-
-    <div class="footer">
-      © 2025 DKZhang123
-    </div>
   </div>
 </body>
 </html>

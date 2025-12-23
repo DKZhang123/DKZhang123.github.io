@@ -1,245 +1,30 @@
 ---
 layout: default
+title: 日更目录
 ---
 
-<style>
-  :root{
-    --bg: #f6f7fb;
-    --card: #ffffff;
-    --text: #111827;
-    --muted: #6b7280;
-    --border: rgba(17,24,39,.08);
-    --shadow: 0 8px 28px rgba(17,24,39,.08);
-    --primary: #2563eb;
-    --primary2:#1d4ed8;
-    --radius: 16px;
-  }
-
-  /* 避免主题把正文撑得太散：给主容器一个“背景区块感” */
-  .dk-wrap{
-    max-width: 980px;
-    margin: 24px auto 56px;
-    padding: 0 16px;
-  }
-
-  .dk-hero{
-    background: linear-gradient(180deg, rgba(37,99,235,.10), rgba(37,99,235,0));
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px 22px 18px;
-  }
-
-  .dk-title{
-    margin: 0 0 6px;
-    font-size: 34px;
-    letter-spacing: .2px;
-    color: var(--text);
-  }
-
-  .dk-subtitle{
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .dk-actions{
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-  }
-
-  .dk-btn{
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 11px 14px;
-    border-radius: 12px;
-    text-decoration: none;
-    border: 1px solid rgba(37,99,235,.25);
-    background: rgba(37,99,235,.10);
-    color: var(--primary2);
-    font-weight: 600;
-  }
-  .dk-btn:hover{ background: rgba(37,99,235,.14); }
-
-  .dk-btn-primary{
-    border-color: transparent;
-    background: var(--primary);
-    color: #fff;
-  }
-  .dk-btn-primary:hover{ background: var(--primary2); }
-
-  .dk-grid{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 18px;
-  }
-
-  @media (min-width: 900px){
-    .dk-grid{ grid-template-columns: 1.1fr .9fr; }
-  }
-
-  .dk-card{
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-
-  .dk-card-hd{
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .dk-card-title{
-    margin: 0;
-    font-size: 16px;
-    color: var(--text);
-  }
-
-  .dk-card-meta{
-    color: var(--muted);
-    font-size: 13px;
-    white-space: nowrap;
-  }
-
-  .dk-list{
-    list-style: none;
-    margin: 0;
-    padding: 6px 6px 10px;
-  }
-
-  .dk-item a{
-    display: flex;
-    gap: 12px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 12px;
-    margin: 6px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: var(--text);
-    border: 1px solid transparent;
-    background: rgba(17,24,39,.02);
-  }
-
-  .dk-item a:hover{
-    border-color: var(--border);
-    background: rgba(37,99,235,.06);
-  }
-
-  .dk-item-left{
-    min-width: 0;
-  }
-
-  .dk-date{
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 2px;
-  }
-
-  .dk-post-title{
-    font-weight: 650;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .dk-arrow{
-    color: rgba(17,24,39,.35);
-    font-size: 18px;
-    flex: 0 0 auto;
-  }
-
-  .dk-empty{
-    padding: 14px 16px 18px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .dk-tip{
-    padding: 14px 16px 18px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-</style>
-
-<div class="dk-wrap">
-
-  <div class="dk-hero">
-    <h1 class="dk-title">日更目录</h1>
-    <p class="dk-subtitle">写实风格 × 时间概念 × 角色分解设计（持续更新）</p>
-
-    <div class="dk-actions">
-      <a class="dk-btn dk-btn-primary" href="/qr/" target="_blank" rel="noopener">
-        ✅ 打开带 Logo 二维码生成器
-      </a>
-      <a class="dk-btn" href="/about/" >
-        📌 关于 / 说明
-      </a>
-    </div>
-  </div>
-
-  <div class="dk-grid">
-
-    <!-- 左侧：文章列表 -->
-    <section class="dk-card">
-      <div class="dk-card-hd">
-        <h2 class="dk-card-title">最近更新</h2>
-        <div class="dk-card-meta">共 {{ site.posts | size }} 篇</div>
-      </div>
-
-      {% if site.posts and site.posts.size > 0 %}
-        <ul class="dk-list">
-          {% for post in site.posts limit: 30 %}
-            <li class="dk-item">
-              <a href="{{ post.url | relative_url }}">
-                <div class="dk-item-left">
-                  <div class="dk-date">{{ post.date | date: "%Y-%m-%d" }}</div>
-                  <div class="dk-post-title">{{ post.title }}</div>
-                </div>
-                <div class="dk-arrow">›</div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <div class="dk-empty">
-          目前还没有文章。<br/>
-          你可以在 <code>_posts/</code> 里新增一篇（如：<code>2025-12-23-xxx.md</code>），刷新后这里会自动出现。
-        </div>
-      {% endif %}
-    </section>
-
-    <!-- 右侧：说明/快捷区 -->
-    <aside class="dk-card">
-      <div class="dk-card-hd">
-        <h2 class="dk-card-title">快速入口</h2>
-        <div class="dk-card-meta">常用工具</div>
-      </div>
-      <div class="dk-tip">
-        <p style="margin:0 0 10px;">建议把高频工具/栏目都放这里，页面会更“像主页”。</p>
-
-        <p style="margin:10px 0 0;">
-          • 二维码工具：<code>/qr/</code><br/>
-          • 目录页：<code>/</code><br/>
-          • 标签页（可选）：<code>/tags/</code>
-        </p>
-
-        <div class="dk-actions" style="margin-top:12px;">
-          <a class="dk-btn" href="/tags/">🏷️ 标签</a>
-          <a class="dk-btn" href="/archive/">🗂️ 归档</a>
-        </div>
-      </div>
-    </aside>
-
-  </div>
+<div class="toprow">
+  <h1 style="margin:0;">日更目录</h1>
+  <div class="muted">共 {{ site.posts | size }} 篇</div>
 </div>
+
+<p class="muted" style="margin:6px 0 16px;">
+  写实风格 × 时间概念 × 角色分解设计
+</p>
+
+<p style="margin:16px 0;">
+  <a class="btn" href="/qr/" target="_blank" rel="noopener">打开：带 Logo 二维码生成器</a>
+</p>
+
+{% if site.posts and site.posts.size > 0 %}
+  <ul class="list">
+    {% for post in site.posts %}
+      <li>
+        <span class="muted">{{ post.date | date: "%Y-%m-%d" }}</span>
+        ｜<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="muted">还没有文章。请在 <code>_posts/</code> 下新增形如 <code>YYYY-MM-DD-title.md</code> 的文件。</p>
+{% endif %}

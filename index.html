@@ -8,23 +8,39 @@ title: 日更目录
   <div class="muted">共 {{ site.posts | size }} 篇</div>
 </div>
 
-<p class="muted" style="margin:6px 0 16px;">
-  写实风格 × 时间概念 × 角色分解设计
-</p>
+<!-- 功能区 -->
+<section class="panel">
+  <div class="panel-hd">
+    <h2 class="panel-title">工具</h2>
+    <div class="panel-sub muted">功能类页面</div>
+  </div>
 
-<p style="margin:16px 0;">
-  <a class="btn" href="/qr/" target="_blank" rel="noopener">打开：带 Logo 二维码生成器</a>
-</p>
+  <div class="panel-bd">
+    <a class="btn" href="/qr/" target="_blank" rel="noopener">
+      打开：带 Logo 二维码生成器
+    </a>
+  </div>
+</section>
 
-{% if site.posts and site.posts.size > 0 %}
-  <ul class="list">
-    {% for post in site.posts %}
-      <li>
-        <span class="muted">{{ post.date | date: "%Y-%m-%d" }}</span>
-        ｜<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p class="muted">还没有文章。请在 <code>_posts/</code> 下新增形如 <code>YYYY-MM-DD-title.md</code> 的文件。</p>
-{% endif %}
+<!-- 文章区 -->
+<section class="panel">
+  <div class="panel-hd">
+    <h2 class="panel-title">文章</h2>
+    <div class="panel-sub muted">日更内容</div>
+  </div>
+
+  <div class="panel-bd">
+    {% if site.posts and site.posts.size > 0 %}
+      <ul class="list">
+        {% for post in site.posts %}
+          <li>
+            <span class="muted">{{ post.date | date: "%Y-%m-%d" }}</span>
+            ｜<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">还没有文章。请在 <code>_posts/</code> 下新增形如 <code>YYYY-MM-DD-title.md</code> 的文件。</p>
+    {% endif %}
+  </div>
+</section>

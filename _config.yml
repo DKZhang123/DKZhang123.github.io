@@ -2,3 +2,6 @@ title: DKZhang123 的日更
 description: Markdown 日更记录
 theme: minima
 markdown: kramdown
+
+url: "https://dkzhang123.github.io"
+baseurl: ""

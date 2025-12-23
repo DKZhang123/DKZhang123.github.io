@@ -66,8 +66,9 @@ title: 写实风格 × 时尚概念｜角色分解设计
 `#提示词分享` `#设计灵感` `#AI生成`
 
 
-<img src="{{ '/images/2025-12-20-01.png' | relative_url }}"
+<img src="../images/2025-12-20-01.png"
      style="max-width:50%;display:block;margin:24px 0 24px 0;">
+
 
 
 

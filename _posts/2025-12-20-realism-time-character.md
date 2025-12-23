@@ -66,8 +66,9 @@ title: AI提示词系列
 `#提示词分享` `#设计灵感` `#AI生成`
 
 
-<img src="{{ '/assets/img/2025-12-20-01.png' | relative_url }}"
+<img src="../images/2025-12-20-01.png"
      style="max-width:50%;display:block;margin:24px 0 24px 0;">
+
 
 
 
